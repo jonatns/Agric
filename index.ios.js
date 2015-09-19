@@ -5,31 +5,42 @@
 'use strict';
 
 var React = require('react-native');
+var Search = require('./Search.ios');
+
+
 var {
   AppRegistry,
+  Component,
   StyleSheet,
   Text,
   View,
+  TabBarIOS
 } = React;
 
-var Agric = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+class Agric extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+        selectedTab: 'Search'
+      };
+    }
+    render() {
+     return (
+      <TabBarIOS selectedTab={this.state.selectedTab}>
+        <TabBarIOS.Item
+          selected={this.state.selectedTab === 'Search'}
+          systemIcon="search"
+          onPress={() => {
+              this.setState({
+                  selectedTab: 'Search',
+              });
+          }}>
+            <Search/>
+        </TabBarIOS.Item>
+      </TabBarIOS>
     );
-  }
-});
+}
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -37,17 +48,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('Agric', () => Agric);
