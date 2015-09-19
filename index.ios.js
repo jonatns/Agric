@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var Search = require('./Search.ios');
+var Add = require('./AddProducts.ios');
 
 
 var {
@@ -36,6 +37,16 @@ class Agric extends Component {
               });
           }}>
             <Search/>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          selected={this.state.selectedTab === 'Add'}
+          systemIcon="more"
+          onPress={() => {
+              this.setState({
+                  selectedTab: 'Add',
+              });
+          }}>
+            <Add/>
         </TabBarIOS.Item>
       </TabBarIOS>
     );
