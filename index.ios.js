@@ -1,53 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+
 'use strict';
 
 var React = require('react-native');
+var Search = require('./Search.ios');
+var Add = require('./AddHarvest.ios');
+
+var Firebase = require("firebase");
+
+
 var {
   AppRegistry,
+  Component,
   StyleSheet,
   Text,
   View,
+  NavigatorIOS
 } = React;
 
-var Agric = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-});
+class Agric extends Component{
+
+   render() {
+      return (
+         <NavigatorIOS ref='nav'
+            style={styles.container}
+            initialRoute={{
+               title: 'Search',
+               rightButtonTitle: 'Add',
+               component: Search,
+               onRightButtonPress: () => {
+                  this.refs.nav.navigator.push({
+                    title: "Add Harvest",
+                    component: Add,
+                    rightButtonTitle: 'Cancel',
+                    onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
+                 });
+              }
+
+            }}/>
+      );
+   }
+};
 
 var styles = StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    flex: 1
+  }
 });
 
 AppRegistry.registerComponent('Agric', () => Agric);

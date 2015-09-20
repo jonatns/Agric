@@ -1,0 +1,19 @@
+{
+   "request" : {
+      "country" : "pr",
+      "encoding" : "json",
+      "place_name" : "london",
+      "pretty" : "1",
+      "sort" : "nestoria_rank"
+   },
+   "response" : {
+      "created_http" : "Sun, 20 Sep 2015 12:34:03 GMT",
+      "created_unix" : 1442752443,
+      "encoding" : "xml",
+      "errors" : "No action supplied",
+      "sort" : "nestoria_rank",
+      "status_code" : "500",
+      "status_text" : "Internal Server Error",
+      "we_are_hiring" : "We are hiring programmers! http://lokku.com/jobs"
+   }
+}
