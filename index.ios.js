@@ -1,7 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+
 'use strict';
 
 var React = require('react-native');
@@ -15,50 +12,42 @@ var {
   StyleSheet,
   Text,
   View,
-  TabBarIOS
+  NavigatorIOS
 } = React;
 
-class Agric extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-        selectedTab: 'Search'
-      };
-    }
-    render() {
-     return (
-      <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarIOS.Item
-          selected={this.state.selectedTab === 'Search'}
-          systemIcon="search"
-          onPress={() => {
-              this.setState({
-                  selectedTab: 'Search',
-              });
-          }}>
-            <Search/>
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          selected={this.state.selectedTab === 'Add'}
-          systemIcon="more"
-          onPress={() => {
-              this.setState({
-                  selectedTab: 'Add',
-              });
-          }}>
-            <Add/>
-        </TabBarIOS.Item>
-      </TabBarIOS>
-    );
-}
-}
+class Agric extends Component{
+
+   render() {
+      return (
+         <NavigatorIOS ref='nav'
+            style={styles.container}
+            initialRoute={{
+               title: 'Search',
+               rightButtonTitle: 'Add',
+               component: Search,
+               onRightButtonPress: () => {
+                  this.refs.nav.navigator.push({
+                    title: "Add Product",
+                    component: Add,
+                    rightButtonTitle: 'Cancel',
+                    onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
+                 });
+              }
+
+            }}/>
+      );
+   }
+};
 
 var styles = StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1
   }
 });
 
