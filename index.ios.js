@@ -3,7 +3,9 @@
 
 var React = require('react-native');
 var Search = require('./Search.ios');
-var Add = require('./AddProducts.ios');
+var Add = require('./AddHarvest.ios');
+
+var Firebase = require("firebase");
 
 
 var {
@@ -27,7 +29,7 @@ class Agric extends Component{
                component: Search,
                onRightButtonPress: () => {
                   this.refs.nav.navigator.push({
-                    title: "Add Product",
+                    title: "Add Harvest",
                     component: Add,
                     rightButtonTitle: 'Cancel',
                     onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
